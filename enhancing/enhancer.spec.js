@@ -28,6 +28,20 @@ describe('enhancer.js', () => {
         } )
     })
 
+    describe('fail() method', () => {
+        it('tests for enhancement failure', () => {
+            const item = { durability: 32, enhancement: 1, name: 'sword'}
+            if(item.enhancement<15) {
+                expect(enhancer.fail(item)).toEqual({...item, durability: item.durability -5});
+            }
+            else if (item.enhancement > 16) {
+                expect(enhancer.fail(item)).toEqual({...item, durability: item.durability-10, enhancement: item.enhancement-1});
+            }
+            else {
+                expect(enhancer.fail(item)).toEqual({...item, durability: item.durability-10});
+            }
+        })
+    })
+
 })
 
-  
